@@ -1,4 +1,4 @@
-# Replicating Facebook like UI in Xamarin
+# Facebook like UI in Xamarin
 
 This repository contains the samples that replicate Facebook Like UI. 
 
