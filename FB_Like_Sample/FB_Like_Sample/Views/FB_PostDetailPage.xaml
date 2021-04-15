@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             mc:Ignorable="d" 
+             xmlns:templates="clr-namespace:FB_Like_Sample.Views.Templates"
+             x:Class="FB_Like_Sample.Views.FB_PostDetailPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="Back_Clicked" />
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0" Margin="5,5,5,10">
+                <templates:FB_PostTemplate/>
+
+                <BoxView Style="{StaticResource HorizontalSeparatorStyle}" />
+
+                <templates:PostCommentsTemplate/>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <border:SfBorder Grid.Column="1" ShadowColor="SkyBlue" Margin="0,5,0,0"
+                                     Padding="5,0" CornerRadius ="20" BorderColor="SkyBlue"
+                                                 HasShadow="True">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                                                   FocusedColor="Transparent" UnfocusedColor="Transparent" 
+                                                   OutlineCornerRadius="5">
+                                    <Editor Placeholder="Add a Comment" Text="{Binding NewCommentText}"/>
+                                </inputLayout:SfTextInputLayout>
+
+
+                                <buttons:SfButton Grid.Column="1" Padding="0,2,2,0"
+                                                  BackgroundColor="SkyBlue" 
+                                                  Command="{Binding AddCommentCommand}"
+                                                  HorizontalOptions="End" 
+                                                  Style="{StaticResource IconButtonStyle}"
+                                                  VerticalOptions="Center"
+                                                  Text="{StaticResource Send}"
+                                                  TextColor="{DynamicResource Gray-White}" />
+                                
+                            </Grid>
+                        </border:SfBorder>                           
+                        
+                    </Grid>
+               
+            </StackLayout>
+            
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

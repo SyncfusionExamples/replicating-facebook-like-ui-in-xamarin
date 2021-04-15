@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+        xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+      xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+       xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+      xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+      xmlns:behavior="clr-namespace:FB_Like_Sample.Behaviors"
+      x:Class="FB_Like_Sample.Views.Templates.PostCommentItemTemplate">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </Grid.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <sfavatar:SfAvatarView  ContentType="Default"  
+                                AvatarShape="Circle"
+                                AvatarSize="Medium"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                BorderColor="White"  
+                                ImageSource="{Binding User.ProfilePicture, 
+                            Converter={StaticResource ImageResourceConverter}}"/>
+
+        <Grid Grid.Column="1">
+
+            <cards:SfCardView HasShadow="False"  
+                                          BackgroundColor="LightBlue">
+                <StackLayout>
+
+                    <Label Text="{Binding User.UserName}" Margin="5,5,0,5"
+               VerticalOptions="CenterAndExpand" HorizontalOptions="Start"
+               Style="{StaticResource StatusLabelStyle}"/>
+
+                    <Label Text="{Binding Comment}" 
+               VerticalOptions="CenterAndExpand" Margin="5,0,5,5"
+               Style="{StaticResource SimpleLabelStyle}"/>
+                </StackLayout>
+            </cards:SfCardView>
+        </Grid>
+
+        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HeightRequest="25" Margin="0,0,0,10">
+
+            <Label Text="{Binding DateTime, StringFormat='{}{0:dd MMM, yyyy}'}"
+               VerticalOptions="CenterAndExpand" Margin="5,0,5,5"
+               Style="{StaticResource SimpleLabelStyle}"/>
+
+            <buttons:SfButton Padding="0" FontSize="{OnIdiom Default=12,
+                                                       Desktop=14}" 
+                                          Command="{Binding LikeCommand}"
+                                              VerticalOptions="CenterAndExpand"
+                                    Style="{StaticResource TransparentButtonStyle}" >
+                <buttons:SfButton.Content>
+                    <Grid>
+                        <Label TextColor="{StaticResource HyperLink}"
+                                           WidthRequest="40"
+                                           HorizontalTextAlignment="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding LikeText, Mode=TwoWay}"  />
+                    </Grid>
+                </buttons:SfButton.Content>
+            </buttons:SfButton>
+
+        </StackLayout>
+
+    </Grid>
+
+</Grid>

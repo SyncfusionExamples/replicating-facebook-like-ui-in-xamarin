@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"             
+             xmlns:behavior="clr-namespace:FB_Like_Sample.Behaviors"
+             mc:Ignorable="d"
+             x:Name="fbPostHomePage" 
+             xmlns:templates="clr-namespace:FB_Like_Sample.Views.Templates"
+             x:Class="FB_Like_Sample.Views.FB_PostHomePage">
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="WhiteSmoke">
+            <listView:SfListView ItemsSource="{Binding Posts}" 
+                                 x:Name="listView"
+                                 IsScrollBarVisible="False" 
+                                 AutoFitMode="DynamicHeight"
+                                 VerticalOptions="FillAndExpand"
+                                 SelectionBackgroundColor="Transparent">
+                <listView:SfListView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5" HeightRequest="80">
+                            <border:SfBorder ShadowColor="SkyBlue"
+                                     Padding="5,0" CornerRadius ="20" BorderColor="SkyBlue"
+                                                 HasShadow="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                                                              VerticalOptions="CenterAndExpand"     
+                                                   FocusedColor="Transparent" UnfocusedColor="Transparent">
+                                        <Editor Placeholder="What's on your mind?" 
+                                                Text="{Binding NewPostText}"/>
+                                    </inputLayout:SfTextInputLayout>
+
+
+                                    <buttons:SfButton Grid.Column="1" Padding="0,2,2,0"
+                                                  BackgroundColor="SkyBlue" 
+                                                  Command="{Binding AddNewPostCommand}"
+                                                  HorizontalOptions="End" 
+                                                  Style="{StaticResource IconButtonStyle}"
+                                                  VerticalOptions="Center"
+                                                  Text="{StaticResource Send}"
+                                                  TextColor="{DynamicResource Gray-White}" />
+
+                                </Grid>
+                            </border:SfBorder>
+                        </Grid>
+                    </DataTemplate>
+                </listView:SfListView.HeaderTemplate>
+                <listView:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <border:SfBorder Margin="5" BackgroundColor="{StaticResource Gray-White}"
+                                         BorderColor="Transparent" HasShadow="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <templates:FB_PostTemplate/>                               
+
+                                <Grid Grid.Row="1" 
+                                      IsVisible="{Binding ShortCommentsVisibility}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Grid BindingContext="{Binding Comments[0]}" Margin="0,0,5,0">
+                                        <templates:PostCommentItemTemplate/>
+                                    </Grid>
+
+                                    <buttons:SfButton Padding="0" Grid.Row="1"
+                                                      HorizontalOptions="CenterAndExpand"
+                                                      Style="{StaticResource TransparentButtonStyle}"
+                                                      Text="More"
+                                                      Command="{Binding OpenPostCommand}" Margin="0,-5,0,0">
+                                    </buttons:SfButton>
+
+                                </Grid>
+
+                            </Grid>
+                        </border:SfBorder>                        
+                    </DataTemplate>
+                </listView:SfListView.ItemTemplate>
+            </listView:SfListView>
+        </Grid>        
+    </ContentPage.Content>
+</ContentPage>

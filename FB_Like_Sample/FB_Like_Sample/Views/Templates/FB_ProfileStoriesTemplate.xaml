@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+             xmlns:behavior="clr-namespace:FB_Like_Sample.Behaviors"
+      x:Class="FB_Like_Sample.Views.Templates.FB_ProfileStoriesTemplate">
+
+    <StackLayout.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+        <converters:KeyToFontIconConverter x:Key="KeyToFontIconConverter"/>
+    </StackLayout.Resources>
+    
+    <!--About Section-->
+    <StackLayout Margin="16,6,16,0" Orientation="Horizontal">
+        <Label HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource TitleLabelStyle}"
+                                    Text="About"
+                                    VerticalOptions="Center" />
+
+        <!--  See all Button  -->
+        <buttons:SfButton Padding="0"
+                                    FontSize="{OnIdiom Default=12,
+                                                       Desktop=14}"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource TransparentButtonStyle}"
+                                    Text="See All"
+                                    VerticalOptions="Center" />
+    </StackLayout>
+
+    <listView:SfListView 
+                    Margin="16,0,0,0"  
+                    IsScrollBarVisible="False"
+                    ItemSize="90" AutoFitMode="Height" 
+                    ItemSpacing="0,0,16,16"
+                    ItemsSource="{Binding About}"
+                    SelectionBackgroundColor="Transparent">
+
+        <listView:SfListView.Behaviors>
+            <behavior:SfListViewExtendHeightBehavior />
+        </listView:SfListView.Behaviors>
+
+        <listView:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label FontFamily="{StaticResource FontIcons}"
+                                       VerticalTextAlignment="Center"
+                                        HorizontalOptions="StartAndExpand"                        
+                                        Style="{StaticResource TitleLabelStyle}"
+                                        Text="{Binding Key, Converter={StaticResource KeyToFontIconConverter}}" 
+                                       HorizontalTextAlignment="Start" />
+
+                    <Label Grid.Column="1" Text="{Binding Value}" Style="{StaticResource SimpleLabelStyle}"/>
+                </Grid>
+            </DataTemplate>
+        </listView:SfListView.ItemTemplate>
+
+    </listView:SfListView>
+
+    <!--Photos Section-->
+    <StackLayout Margin="16,6,16,0" Orientation="Horizontal">
+        <Label HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource TitleLabelStyle}"
+                                    Text="Photos"
+                                    VerticalOptions="Center" />
+
+        <!--  See all Button  -->
+        <buttons:SfButton Padding="0"
+                                    FontSize="{OnIdiom Default=12,
+                                                       Desktop=14}"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource TransparentButtonStyle}"
+                                    Text="See All"
+                                    VerticalOptions="Center" />
+
+    </StackLayout>
+
+    <listView:SfListView x:Name="listView"
+                    Margin="16,0,0,0"  
+                    IsScrollBarVisible="False"
+                    ItemSize="90" AutoFitMode="Height" 
+                    ItemSpacing="0,0,16,16"
+                    SelectionChangedCommand="{Binding PostImageSelectionChangedCommand}"
+                    SelectionChangedCommandParameter="{x:Reference listView}"
+                    ItemsSource="{Binding Images}"
+                    SelectionBackgroundColor="Transparent">
+
+        <listView:SfListView.Behaviors>
+            <behavior:SfListViewExtendHeightBehavior />
+        </listView:SfListView.Behaviors>
+
+        <listView:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <!--  Photos  -->
+                    <Image
+                                    Aspect="AspectFit"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="100"
+                                    Source="{Binding Converter={StaticResource ImageResourceConverter}}">
+                    </Image>
+                </Grid>
+            </DataTemplate>
+        </listView:SfListView.ItemTemplate>
+
+        <listView:SfListView.LayoutManager>
+            <listView:GridLayout SpanCount="3" />
+        </listView:SfListView.LayoutManager>
+
+    </listView:SfListView>
+
+    <!--Friends Section-->
+    <StackLayout Margin="16,6,16,0" Orientation="Horizontal">
+        <Label HorizontalOptions="StartAndExpand"
+                                    Style="{StaticResource TitleLabelStyle}"
+                                    Text="Friends"
+                                    VerticalOptions="Center" />
+
+        <!--  See all Button  -->
+        <buttons:SfButton Padding="0"
+                                    FontSize="{OnIdiom Default=12,
+                                                       Desktop=14}"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource TransparentButtonStyle}"
+                                    Text="See All" 
+                                    VerticalOptions="Center" />
+
+    </StackLayout>
+
+    <listView:SfListView 
+                    Grid.Row="6" x:Name="friendsListView"
+                    Grid.ColumnSpan="2"
+                    Margin="16,0,0,0" 
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False"
+                    ItemSize="90"
+                    ItemSpacing="0,0,16,16"
+                    SelectionChangedCommand="{Binding FriendSelectionChangedCommand}"
+                    SelectionChangedCommandParameter="{x:Reference friendsListView}"
+                    ItemsSource="{Binding Friends}"
+                    SelectionBackgroundColor="Transparent">
+
+        <listView:SfListView.Behaviors>
+            <behavior:SfListViewExtendHeightBehavior />
+        </listView:SfListView.Behaviors>
+
+        <listView:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <!--  Photos  -->
+                    <Image
+                                    Aspect="AspectFit"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="100"
+                                    Source="{Binding ProfilePicture, Converter={StaticResource ImageResourceConverter}}">
+                    </Image>
+                </Grid>
+            </DataTemplate>
+        </listView:SfListView.ItemTemplate>
+
+        <listView:SfListView.LayoutManager>
+            <listView:GridLayout SpanCount="3" />
+        </listView:SfListView.LayoutManager>
+
+    </listView:SfListView>
+
+</StackLayout>

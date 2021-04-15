@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"      
+      xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+      xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+      x:Class="FB_Like_Sample.Views.Templates.PostOwnerTemplate" x:Name="FbPostOwner">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </Grid.Resources>
+    
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+
+    <!--  Profile Image  -->
+    <sfavatar:SfAvatarView  ContentType="Default"  
+                                AvatarShape="Circle"
+                                AvatarSize="Medium"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                BorderColor="White"  
+                                ImageSource="{Binding Owner.ProfilePicture, 
+                            Converter={StaticResource ImageResourceConverter}}"/>
+    <StackLayout Grid.Column="1" 
+            VerticalOptions="Center">
+
+        <!--  Customer Name  -->
+        <Label
+                Style="{StaticResource TitleLabelStyle}"
+                FontSize="14"
+                HorizontalOptions="Start"
+                Text="{Binding Owner.UserName}" />
+
+        <!--  Commented Date  -->
+        <Label  FontFamily="{StaticResource Montserrat-Regular}"
+                LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                Style="{StaticResource SimpleLabelStyle}"
+                Text="{Binding PostedOn, StringFormat='{}{0:dd MMM, yyyy}'}" />
+    </StackLayout>
+
+   
+
+</Grid>

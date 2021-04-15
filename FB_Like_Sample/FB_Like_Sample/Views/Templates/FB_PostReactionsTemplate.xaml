@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+      xmlns:behavior="clr-namespace:FB_Like_Sample.Behaviors"
+       xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+      xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+      x:Class="FB_Like_Sample.Views.Templates.PostReactionsTemplate">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter"/>
+        <converters:IntToBoolConverter x:Key="IntToBoolConverter"/>
+    </Grid.Resources>
+    
+    <listView:SfListView IsScrollBarVisible="False"
+                         IsVisible="{Binding Reactions.Count, Converter={StaticResource IntToBoolConverter}}"
+                         HeightRequest="20"
+                         AutoFitMode="Height" Orientation="Horizontal"
+                    ItemsSource="{Binding Reactions, Mode=TwoWay}"
+                    SelectionBackgroundColor="Transparent">
+        <listView:SfListView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="15"/>
+                    </Grid.ColumnDefinitions>
+
+                    <sfavatar:SfAvatarView  ContentType="Default"  
+                                AvatarShape="Circle" 
+                                AvatarSize="ExtraSmall" 
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                BorderColor="White"  
+                                ImageSource="{Binding ReactionType, 
+                            Converter={StaticResource ImageResourceConverter}}"/>
+
+                    <Label HorizontalTextAlignment="Start" Grid.Column="1" 
+                           VerticalOptions="Center" HorizontalOptions="Start"
+                           VerticalTextAlignment="Center" Margin="-5,0,0,0"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding PostReactionCount, Mode=TwoWay}"  />
+                </Grid>
+            </DataTemplate>
+        </listView:SfListView.ItemTemplate>
+    </listView:SfListView>
+
+</Grid>

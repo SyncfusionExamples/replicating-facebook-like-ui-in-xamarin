@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:popup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+            xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+             xmlns:collection="clr-namespace:System.Collections.ObjectModel;assembly=netstandard"
+             xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+             xmlns:templates="clr-namespace:FB_Like_Sample.Views.Templates"
+             mc:Ignorable="d" 
+             x:Class="FB_Like_Sample.Views.Templates.FB_PostTemplate" Margin="5,5,5,10">
+
+    <Grid.Resources>
+        <converters:FB_PostTypeVisibilityConverter x:Key="PostTypeConverter"/>
+        <converters:StringToImageResourceConverter x:Key="ImageConverter"/>
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition />
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    
+    <templates:PostOwnerTemplate/>
+
+    <Grid WidthRequest="50" HeightRequest="50" 
+                                      HorizontalOptions="EndAndExpand">
+        <sfPopup:SfPopupLayout  x:Name="actionPopupLayout">
+            <sfPopup:SfPopupLayout.PopupView>
+                <sfPopup:PopupView WidthRequest="200" ShowFooter="False"
+                                                           HeaderTitle="Actions" 
+                                                           AnimationMode="SlideOnRight">
+                    <sfPopup:PopupView.ContentTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <buttons:SfButton Text="Open this post"
+                                                  x:Name="openActionButton"
+                                                  Clicked="openActionButton_Clicked"
+                                                  HorizontalTextAlignment="Start" 
+                                                  Margin="5,0,5,0"
+                                                  Style="{StaticResource TransparentButtonStyle}"/>
+                                <buttons:SfButton HorizontalTextAlignment="Start" Margin="5,0,5,0"
+                                                  x:Name="deleteActionButton"
+                                                  Clicked="deleteActionButton_Clicked"
+                                                  Text="Delete this post" 
+                                                  Style="{StaticResource TransparentButtonStyle}"/>
+                                <buttons:SfButton HorizontalTextAlignment="Start" Margin="5,0,5,0"
+                                                  x:Name="shareActionButton"
+                                                  Clicked="shareActionButton_Clicked"
+                                                  Text="Share this post" 
+                                                  Style="{StaticResource TransparentButtonStyle}"/>
+                                <buttons:SfButton HorizontalTextAlignment="Start" Margin="5,0,5,0"
+                                                  x:Name="reportProblemButton"
+                                                  Clicked="reportProblemButton_Clicked"
+                                                  Text="Report a problem" 
+                                                  Style="{StaticResource TransparentButtonStyle}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </sfPopup:PopupView.ContentTemplate>
+                </sfPopup:PopupView>
+            </sfPopup:SfPopupLayout.PopupView>
+            <sfPopup:SfPopupLayout.Content>
+                <Grid WidthRequest="100" >
+                    <!--  More Icon  -->
+                    <buttons:SfButton x:Name="moreItemsButton"  Text="{StaticResource More}"
+                                      IsVisible="{Binding MoreIconVisibility, Mode=TwoWay}"
+                                                              Clicked="moreItemsButton_Clicked"
+                                                                  VerticalOptions="StartAndExpand"
+                                                                  HorizontalOptions="EndAndExpand"
+                                                              Style="{StaticResource ActionIconButtonStyle}" 
+                                                              BackgroundColor="Transparent" />
+                </Grid>
+            </sfPopup:SfPopupLayout.Content>
+        </sfPopup:SfPopupLayout>
+    </Grid>
+
+    <Grid Grid.Row="1" Padding="0">
+        <templates:MessagePostTemplate IsVisible="{Binding PostType, 
+                        Converter={StaticResource PostTypeConverter}, 
+                        ConverterParameter=1}" HeightRequest="200"/>
+        <templates:PicturePostTemplate IsVisible="{Binding PostType, 
+                        Converter={StaticResource PostTypeConverter}, 
+                        ConverterParameter=2}"/>
+        <templates:VideoPostTemplate IsVisible="{Binding PostType, 
+                        Converter={StaticResource PostTypeConverter}, 
+                        ConverterParameter=3}"/>
+    </Grid>
+
+    <BoxView Margin="5,2,5,5" Grid.Row="2"
+                         Style="{StaticResource HorizontalSeparatorStyle}" />
+
+    <Grid Grid.Row="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <popup:SfPopupLayout  x:Name="popupLayout" Closed="popupLayout_Closed">
+            <popup:SfPopupLayout.PopupView>
+                <popup:PopupView ShowFooter="False" ShowCloseButton="False" ShowHeader="False" BackgroundColor="Transparent"
+                                 HeightRequest="35">
+                            <popup:PopupView.ContentTemplate>
+                        <DataTemplate>
+                            <border:SfBorder BackgroundColor="{StaticResource Gray-White}" CornerRadius="25"
+                                             HasShadow="True" Padding="5" HeightRequest="50" BorderColor="Transparent"
+                                             ShadowColor="SkyBlue"
+                                             WidthRequest="210">
+                                <rating:SfRating x:Name="rating"
+                                             Value="{Binding ReactionIndex, Mode=TwoWay}"
+                                             EnableCustomView="True" ItemCount="5"
+                         ValueChanged="rating_ValueChanged" ItemSize="35">
+                                    <rating:SfRating.Items>
+                                        <collection:ObservableCollection x:TypeArguments="rating:SfRatingItem">
+                                            <rating:SfRatingItem>
+                                                <rating:SfRatingItem.SelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Happy.png}"/>
+                                                </rating:SfRatingItem.SelectedView>
+                                                <rating:SfRatingItem.UnSelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Happy.png}"/>
+                                                </rating:SfRatingItem.UnSelectedView>
+                                            </rating:SfRatingItem>
+                                            <rating:SfRatingItem>
+                                                <rating:SfRatingItem.SelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Neutral.png}"/>
+                                                </rating:SfRatingItem.SelectedView>
+                                                <rating:SfRatingItem.UnSelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Neutral.png}"/>
+                                                </rating:SfRatingItem.UnSelectedView>
+                                            </rating:SfRatingItem>
+                                            <rating:SfRatingItem>
+                                                <rating:SfRatingItem.SelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Wonder.png}"/>
+                                                </rating:SfRatingItem.SelectedView>
+                                                <rating:SfRatingItem.UnSelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Wonder.png}"/>
+                                                </rating:SfRatingItem.UnSelectedView>
+                                            </rating:SfRatingItem>
+                                            <rating:SfRatingItem>
+                                                <rating:SfRatingItem.SelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Sad.png}"/>
+                                                </rating:SfRatingItem.SelectedView>
+                                                <rating:SfRatingItem.UnSelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Sad.png}"/>
+                                                </rating:SfRatingItem.UnSelectedView>
+                                            </rating:SfRatingItem>
+                                            <rating:SfRatingItem>
+                                                <rating:SfRatingItem.SelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Angry.png}"/>
+                                                </rating:SfRatingItem.SelectedView>
+                                                <rating:SfRatingItem.UnSelectedView>
+                                                    <Image Source="{Binding Converter={StaticResource ImageConverter}, ConverterParameter=Angry.png}"/>
+                                                </rating:SfRatingItem.UnSelectedView>
+                                            </rating:SfRatingItem>
+                                        </collection:ObservableCollection>
+                                    </rating:SfRating.Items>
+                                </rating:SfRating>
+                            </border:SfBorder>                           
+                        </DataTemplate>
+                    </popup:PopupView.ContentTemplate>
+
+                    <popup:PopupView.PopupStyle>
+                        <popup:PopupStyle BorderThickness="0"  OverlayOpacity="0"/>
+                    </popup:PopupView.PopupStyle>
+                </popup:PopupView>
+            </popup:SfPopupLayout.PopupView>
+            <popup:SfPopupLayout.Content>
+                <buttons:SfButton Padding="0" x:Name="reactionButton"
+                                    FontSize="{OnIdiom Default=12,
+                                                       Desktop=14}"
+                                    Clicked="reactionButton_Clicked"
+                                    HorizontalOptions="CenterAndExpand" 
+                                    Style="{StaticResource TransparentButtonStyle}"
+                                    VerticalOptions="Center" >
+                    <buttons:SfButton.Content>
+                        <Grid Margin="5" HorizontalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Style="{StaticResource IconLabelStyle}"
+                                        Text="{StaticResource Like}" TextColor="{StaticResource HyperLink}"/>
+                            <Label Grid.Column="1" 
+                                   TextColor="{StaticResource HyperLink}"
+                                        HorizontalOptions="CenterAndExpand"  
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="{Binding ReactionText, Mode=TwoWay}"  />
+                        </Grid>
+                    </buttons:SfButton.Content>
+                </buttons:SfButton>
+            </popup:SfPopupLayout.Content>
+        </popup:SfPopupLayout>
+
+        <buttons:SfButton Padding="0" Grid.Column="1"
+                                    FontSize="{OnIdiom Default=12,
+                                                       Desktop=14}"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource TransparentButtonStyle}"
+                                    Command="{Binding ShareCommand}"
+                                    VerticalOptions="Center" >
+            <buttons:SfButton.Content>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Style="{StaticResource IconLabelStyle}" TextColor="{StaticResource HyperLink}"
+                                        Text="{StaticResource Share}"  />
+
+                    <Label Grid.Column="1" TextColor="{StaticResource HyperLink}"
+                                        HorizontalOptions="CenterAndExpand"  
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        Text="Share"  />
+                </Grid>
+            </buttons:SfButton.Content>
+        </buttons:SfButton>
+    </Grid>
+
+    <BoxView Margin="5,5,5,2" Grid.Row="4"
+             Style="{StaticResource HorizontalSeparatorStyle}" />
+
+    <templates:PostReactionsTemplate Grid.Row="5"/>   
+    
+</Grid>
