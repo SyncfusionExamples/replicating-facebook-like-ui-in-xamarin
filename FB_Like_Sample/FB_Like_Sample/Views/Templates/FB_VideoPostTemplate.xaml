@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+      xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+      x:Class="FB_Like_Sample.Views.Templates.VideoPostTemplate" Padding="0">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </Grid.Resources>
+
+    <Grid Padding="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Text="{Binding Message}" Style="{StaticResource TitleLabelStyle}"
+               HorizontalOptions="Start" HorizontalTextAlignment="Start" Margin="5"/>
+        
+        <Grid Margin="0,5,0,0" Grid.Row="1">
+            <MediaElement x:Name="mediaElement" Source="{Binding MediaSource}"
+                          HeightRequest="{StaticResource postContectHeight}"
+                      MediaOpened="MediaElement_MediaOpened"
+                      AutoPlay="False" BackgroundColor="AliceBlue"
+                      Aspect="AspectFill" />
+
+            <Label x:Name="loading" 
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                   Text="Loading...." Style="{StaticResource SimpleLabelStyle}"/>
+
+            <buttons:SfButton IsVisible="False" x:Name="playButton" Clicked="SfButton_Clicked"
+                              Margin="5"
+                              HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"
+                                          Style="{StaticResource IconButtonStyle}"/>
+        </Grid>
+
+    </Grid>
+
+</Grid>

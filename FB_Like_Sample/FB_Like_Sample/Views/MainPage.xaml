@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d" 
+            xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+            xmlns:views="clr-namespace:FB_Like_Sample.Views"
+                  xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+                  xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+                  xmlns:templates="clr-namespace:FB_Like_Sample.Views.Templates"
+            x:Class="FB_Like_Sample.Views.MainPage">
+    
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <ContentPage.Resources>
+                <converters:KeyToFontIconConverter x:Key="KeyToFontIconConverter"/>
+            </ContentPage.Resources>
+            <StackLayout>
+                <Grid VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <templates:FB_MasterPageProfileTemplate Margin="0,10,0,0"/>
+
+                    <BoxView Margin="5,5,5,5" Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+
+                    <listView:SfListView x:Name="ListViewMenu"
+                                        Grid.Row="2">
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="10">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Label FontFamily="{StaticResource FontIcons}"
+                                               VerticalTextAlignment="Center" Margin="0,2,0,0"
+                                               HorizontalOptions="StartAndExpand"                        
+                                               Style="{StaticResource TitleLabelStyle}"
+                                               Text="{Binding Id, Converter={StaticResource KeyToFontIconConverter}}" 
+                                               HorizontalTextAlignment="Start" />
+                                        
+                                        <Label Text="{Binding Title}" Grid.Column="1"
+                                               HorizontalTextAlignment="Start" VerticalOptions="Center"
+                                               HorizontalOptions="Start" 
+                                               Style="{StaticResource TitleLabelStyle}"/>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+                </Grid>
+
+                <button:SfButton Text="Sign Out" Margin="5"
+                                 Style="{StaticResource TransparentButtonStyle}"
+                                 Clicked="SfButton_Clicked"/>
+                
+            </StackLayout>
+            
+        </ContentPage>
+    </MasterDetailPage.Master>
+    
+</MasterDetailPage>

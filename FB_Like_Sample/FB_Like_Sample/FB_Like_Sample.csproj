@@ -1,0 +1,187 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Angry.png" />
+    <None Remove="Images\Happy.png" />
+    <None Remove="Images\Neutral.png" />
+    <None Remove="Images\Sad.png" />
+    <None Remove="Images\User000.png" />
+    <None Remove="Images\User000Banner.png" />
+    <None Remove="Images\User000Status001.png" />
+    <None Remove="Images\User000Status002.png" />
+    <None Remove="Images\User001.png" />
+    <None Remove="Images\User001Banner.png" />
+    <None Remove="Images\User001Status001.png" />
+    <None Remove="Images\User001Status002.png" />
+    <None Remove="Images\User002.png" />
+    <None Remove="Images\User002Banner.png" />
+    <None Remove="Images\User002Status001.png" />
+    <None Remove="Images\User002Status002.png" />
+    <None Remove="Images\User003.png" />
+    <None Remove="Images\User003Banner.png" />
+    <None Remove="Images\User003Status001.png" />
+    <None Remove="Images\User003Status002.png" />
+    <None Remove="Images\User004.png" />
+    <None Remove="Images\User004Banner.png" />
+    <None Remove="Images\User004Status001.png" />
+    <None Remove="Images\User004Status002.png" />
+    <None Remove="Images\Wonder.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Angry.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Wonder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Happy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Neutral.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Sad.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User000Banner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User000Status001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User000Status002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User001Banner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User001Status001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User001Status002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User002Banner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User002Status001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User002Status002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User003.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User003Banner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User003Status001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User003Status002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User004Banner.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User004Status001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\User004Status002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.2.0.48" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Styles\FB_UIStyles.xaml.cs">
+      <DependentUpon>FB_UIStyles.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\FB_PostHomePage.xaml.cs">
+      <DependentUpon>FB_PostHomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\FB_FriendProfilePage.xaml.cs">
+      <DependentUpon>FB_FriendProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_PostTemplate.xaml.cs">
+      <DependentUpon>FB_PostPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\FB_PostDetailPage.xaml.cs">
+      <DependentUpon>FB_PostDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_PostCommentsTemplate.xaml.cs">
+      <DependentUpon>FB_PostCommentsTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_VideoPostTemplate.xaml.cs">
+      <DependentUpon>FB_VideoPostTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_PostReactionsTemplate.xaml.cs">
+      <DependentUpon>FB_PostReactionsTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_PicturePostTemplate.xaml.cs">
+      <DependentUpon>FB_PicturePostTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_MessagePostTemplate.xaml.cs">
+      <DependentUpon>FB_MessagePostTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\FB_PostOwnerTemplate.xaml.cs">
+      <DependentUpon>FB_PostOwnerTemplate.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\FB_ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\FB_LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\FB_MasterPageProfileTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Styles\FBPagesStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\FB_ProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

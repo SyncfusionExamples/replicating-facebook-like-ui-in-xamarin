@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+      x:Class="FB_Like_Sample.Views.Templates.PicturePostTemplate">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </Grid.Resources>
+
+    <Grid Padding="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Text="{Binding Message}" Style="{StaticResource TitleLabelStyle}"
+               HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+
+        <Image Grid.Row="1" Aspect="AspectFill" HeightRequest="{StaticResource postContectHeight}" 
+                        Source="{Binding Picture, Converter={StaticResource ImageResourceConverter}}"/>
+    </Grid>
+
+</Grid>

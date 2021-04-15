@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+             xmlns:templates="clr-namespace:FB_Like_Sample.Views.Templates"
+             xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+             mc:Ignorable="d"
+             x:Class="FB_Like_Sample.Views.FB_FriendProfilePage">
+
+    <ContentPage.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Back" Clicked="ToolbarItem_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="0">
+
+                <Grid 
+                    Margin="0"
+                    HorizontalOptions="FillAndExpand">
+                    
+                    <!--  Profile Banner Image  -->
+                    <Image HorizontalOptions="FillAndExpand"                    
+                        HeightRequest="200"
+                        Aspect="AspectFill"
+                        Source="{Binding BannerPicture, Converter={StaticResource ImageResourceConverter}}"/>
+                </Grid>
+
+                <border:SfBorder 
+                    HeightRequest="13" 
+                    Margin="0,-10,0,0" 
+                    CornerRadius="10,10,0,0" 
+                    HorizontalOptions="FillAndExpand" 
+                    BorderWidth="0" 
+                    BorderColor="Transparent" 
+                    BackgroundColor="{DynamicResource Gray-White}" />
+
+                <badge:SfBadgeView HorizontalOptions="Center" Margin="0,-45,0,0">
+                    <badge:SfBadgeView.Content>
+                        <sfavatar:SfAvatarView  ContentType="Default"  
+                                AvatarShape="Circle"
+                                AvatarSize="ExtraLarge"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                BorderColor="White"  
+                                ImageSource="{Binding ProfilePicture, 
+                            Converter={StaticResource ImageResourceConverter}}"/>
+                    </badge:SfBadgeView.Content>
+                    <badge:SfBadgeView.BadgeSettings>
+                        <badge:BadgeSetting BadgeType="Success" Offset="-5,-10" FontSize="10"
+                                                BadgePosition="BottomRight" BadgeIcon="Available"/>
+                    </badge:SfBadgeView.BadgeSettings>
+                </badge:SfBadgeView>
+
+                <!--  Profile name  -->
+                <Label Style="{StaticResource TitleLabelStyle}" FontSize="20" Text="{Binding UserName}" />
+
+                <!--  Status label  -->
+                <Label Style="{StaticResource StatusLabelStyle}" FontSize="12" Text="{Binding StatusMessage}" />
+
+                <BoxView Margin="0,10,0,0"
+                         Style="{StaticResource HorizontalSeparatorStyle}" />
+
+                <templates:FB_ProfileStoriesTemplate/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

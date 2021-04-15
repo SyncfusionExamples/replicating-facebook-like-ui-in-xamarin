@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+        xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+      xmlns:behavior="clr-namespace:FB_Like_Sample.Behaviors"
+      xmlns:templates="clr-namespace:FB_Like_Sample.Views.Templates"
+      x:Class="FB_Like_Sample.Views.Templates.PostCommentsTemplate">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </Grid.Resources>
+    
+    <listView:SfListView IsScrollBarVisible="False" 
+                    AutoFitMode="Height" 
+                    ItemSpacing="0,2,10,0" 
+                         ItemsSource="{Binding Comments, Mode=TwoWay}"
+                    SelectionBackgroundColor="Transparent">
+
+        <listView:SfListView.Behaviors>
+            <behavior:SfListViewExtendHeightBehavior />
+        </listView:SfListView.Behaviors>
+        
+        <listView:SfListView.ItemTemplate>
+            <DataTemplate>
+                <templates:PostCommentItemTemplate/>
+            </DataTemplate>
+        </listView:SfListView.ItemTemplate>
+    </listView:SfListView>
+
+</Grid>

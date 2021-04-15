@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+      x:Class="FB_Like_Sample.Views.Templates.MessagePostTemplate">
+
+    <cards:SfCardView HasShadow="False" 
+                      BackgroundColor="LightSkyBlue" Margin="0,0,5,0">
+
+        <Label Text="{Binding Message}" TextColor="{DynamicResource Gray-White}"
+               VerticalOptions="CenterAndExpand"
+               Style="{StaticResource TitleLabelStyle}"/>
+
+    </cards:SfCardView>
+
+</Grid>

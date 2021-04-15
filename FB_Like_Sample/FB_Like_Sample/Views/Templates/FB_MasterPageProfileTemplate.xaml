@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+      xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+      xmlns:converters="clr-namespace:FB_Like_Sample.Converters"
+             x:Class="FB_Like_Sample.Views.Templates.FB_MasterPageProfileTemplate">
+
+    <Grid.Resources>
+        <converters:StringToImageResourceConverter x:Key="ImageResourceConverter" />
+    </Grid.Resources>
+    
+    <Grid >
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Rounded Profile Image  -->
+        <!--  Profile Image  -->
+        <sfavatar:SfAvatarView  ContentType="Default"  Grid.RowSpan="2"
+                                AvatarShape="Circle"
+                                AvatarSize="Large"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                BorderColor="White"  
+                                ImageSource="{Binding ProfilePicture, 
+                            Converter={StaticResource ImageResourceConverter}}"/>
+
+        <!--  Profile Name  -->
+        <Label  Grid.Column="1"
+                Margin="0,4,0,0"
+                FontSize="14"
+                Style="{StaticResource TitleLabelStyle}"
+                HorizontalOptions="Start"
+                Text="{Binding UserName}" />
+
+        <!--  Email  -->
+        <Label Grid.Row="1"
+               Grid.Column="1"
+               FontSize="12"
+               HorizontalOptions="Start"
+               Style="{StaticResource SimpleLabelStyle}"
+               Text="{Binding UserID}" />
+    </Grid>
+</Grid>
