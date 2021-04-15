@@ -7,6 +7,6 @@ This repository contains the samples that replicate Facebook Like UI.
 * Open it using VS2017 and above
 * Use Xamarin.Forms 5 and above
 
-
+Blog reference: https://www.syncfusion.com/blogs/post/replicating-a-facebook-like-ui-in-xamarin.aspx
 
 
